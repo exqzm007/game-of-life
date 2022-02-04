@@ -12,6 +12,8 @@ module.exports = {
   coverageDirectory: 'coverage',
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '^@comp/(.*)$': '<rootDir>/src/components/$1',
+    '\\.(css|less|scss|sss|styl)$': '<rootDir>/node_modules/jest-css-modules',
   },
   setupFilesAfterEnv: ['<rootDir>/testsSettings/setupTests.ts'],
   modulePathIgnorePatterns: ['<rootDir>/.stryker-tmp'],

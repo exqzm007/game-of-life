@@ -1,7 +1,8 @@
 import React from 'react';
+import Field from '@comp/Field/Field';
 
-export default function App({ name }: { name: string }) {
+export default function App() {
   return (
-    <a href="google.com">{ name }</a>
+    <Field rows={6} columns={6} />
   );
 }
