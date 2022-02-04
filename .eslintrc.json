@@ -20,7 +20,9 @@
     "indent": ["error", 2],
     "no-multi-spaces": ["error"],
     "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "@typescript-eslint/no-unused-vars": "off",
+    "import/no-extraneous-dependencies": "off"
   },
   "settings": {
     "import/extensions": [".ts", ".tsx", ".js"]
