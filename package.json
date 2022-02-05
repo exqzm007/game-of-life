@@ -13,7 +13,8 @@
     "lint": "npx eslint --ext .tsx,.js,.ts --fix ./",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "chromatic": "npx chromatic --project-token=6acaa04c4f1a"
+    "chromatic": "npx chromatic --project-token=6acaa04c4f1a",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
@@ -21,7 +22,7 @@
     }
   },
   "lint-staged": {
-    "**/*": [
+    "*.{tsx,js,ts,yml,yaml}": [
       "eslint --fix"
     ]
   },
