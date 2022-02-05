@@ -18,3 +18,6 @@ jobs:
       - name: Lint check
         run: |
           yarn test
+      - name: Deploy chromatic
+        run: |
+          yarn chromatic
