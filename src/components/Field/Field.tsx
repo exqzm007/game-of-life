@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import Cell from '@comp/Cell/Cell';
 import getRowsColumnsLayout from './getRowsColumnsLayout';
 import styles from './FieldStyles.module.css';
@@ -8,7 +8,7 @@ interface IFieldProps {
   columns: number,
 }
 
-function Field({ rows, columns }: IFieldProps) {
+const Field: FC<IFieldProps> = ({ rows, columns }: IFieldProps) => {
   const rowsColumnsArray = getRowsColumnsLayout(rows, columns);
   const onClickHandler = (serialNumber: number) => {
     console.log(serialNumber);
@@ -37,6 +37,6 @@ function Field({ rows, columns }: IFieldProps) {
       }
     </div>
   );
-}
+};
 
 export default Field;
