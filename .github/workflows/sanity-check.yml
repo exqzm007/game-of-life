@@ -1,6 +1,6 @@
 name: PR Sanity Check
 
-on: pull_request
+on: [push]
 
 jobs:
   lint:
@@ -8,6 +8,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Install Packages
         run: |
@@ -15,6 +17,9 @@ jobs:
       - name: Lint check
         run: |
           yarn lint
-      - name: Lint check
+      - name: Test
         run: |
           yarn test
+      - name: Deploy chromatic
+        run: |
+          yarn chromatic

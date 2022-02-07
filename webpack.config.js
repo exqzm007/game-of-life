@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const isProduction = process.env.NODE_ENV === 'production';
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 const config = {
   entry: './src/index.tsx',
@@ -10,7 +10,7 @@ const config = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.css'],
     alias: {
       '@': path.resolve(__dirname, 'src'),
       '@comp': path.resolve(__dirname, 'src/components'),
@@ -21,6 +21,11 @@ const config = {
     open: true,
     host: 'localhost',
   },
+  performance: {
+    hints: false,
+    maxEntrypointSize: 512000,
+    maxAssetSize: 512000,
+  },
   module: {
     rules: [
       {
@@ -29,8 +34,25 @@ const config = {
         exclude: ['/node_modules/'],
       },
       {
-        test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        test: /\.module\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: isDevelopment,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        exclude: /\.module.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+        ],
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
@@ -46,7 +68,7 @@ const config = {
 };
 
 module.exports = () => {
-  if (isProduction) {
+  if (!isDevelopment) {
     config.mode = 'production';
     config.plugins.push(new MiniCssExtractPlugin());
   } else {
